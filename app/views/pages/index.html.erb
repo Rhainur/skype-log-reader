@@ -1,0 +1,36 @@
+<h2>Skype Log Viewer</h2>
+<%= form_tag do %>
+Date: <%= date_field_tag(:day, @day) + submit_tag('Load') %>
+<% end %>
+<table id="chat-log" cellspacing="0" cellpadding="0">
+<%
+previous_speaker = nil
+current_day = nil
+%>
+<% @lines.each do |line| %>
+  <% unless current_day == line.created_at.day %>
+    <% current_day = line.created_at.day %>
+    <tr>
+      <td colspan="3" class="date-row">
+        <strong>
+          <%= line.created_at.to_date.to_formatted_s(:long) %>
+        </strong>
+      </td>
+    </tr>
+  <% end %>
+  <tr<%= ' class="dark-row"'.html_safe if line.speaker == @highlighted_speaker %>>
+    <td title="<%= line.created_at.to_formatted_s(:long) %>">
+      <%= line.created_at.to_formatted_s(:time) %>
+    </td>
+    <td>
+      <% unless line.speaker == previous_speaker %>
+        <%= line.speaker %>:
+      <%
+        end
+        previous_speaker = line.speaker
+      %>
+    </td>
+    <td><%= line.content %></td>
+  </tr>
+<% end %>
+</table>
