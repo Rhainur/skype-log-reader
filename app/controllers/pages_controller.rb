@@ -13,10 +13,10 @@ class PagesController < ApplicationController
   def upload
     if request.post?
       log_data = params[:log_file]
-
+      last_line = Line.last
       # Process line by line!
       log_data.read.each_line do |line|
-        Line.create_from_input(line)
+        Line.create_from_input(line, last_line.created_at)
       end
     end
   end
