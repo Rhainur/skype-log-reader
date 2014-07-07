@@ -1,22 +1,32 @@
+#chat-log{
+  border-right: 1px gray dotted;
+  border-left: 1px gray dotted;
+}
+
 #chat-log td{
-  padding: 5px 0;
+  padding: 5px;
   vertical-align: top;
 }
 
 .dark-row{
-  background-color: #F2F2F2;
+  background-color: #dcedf4;
 }
 
 .date-row{
   opacity: 1 !important;
-  border-bottom: 1px black dashed;
+  border-bottom: 1px gray dotted;
 }
 
 #chat-log tr td:nth-child(1){
   opacity: 0.5;
-  width: 50px;
+  text-align: center;
 }
 
 #chat-log tr td:nth-child(2){
   width: 100px;
+}
+
+#chat-log tr td:nth-child(3){
+  max-width: 800px;
+  padding-right: 20px;
 }
